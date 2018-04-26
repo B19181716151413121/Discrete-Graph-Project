@@ -9,16 +9,17 @@ Created on Mon Apr 23 14:33:58 2018
 from Weighted_Graph import *
 
 wg = Weighted_Graph('graph.txt')
-T = ({},[])    
-edges = []    
-
+T = ({},[]) 
+edges = []      
+vert = []
+#Pass in cost and returns edge
 def findEdge(cost):
     for i in wg.edge_dict():
         if (cost == wg.edge_dict()[i]):
             #edges.append(i)
             #if edge is in 
             return i
-
+#sorts values from least to greatest
 def sortValues():
     costSorted = []
     for i in wg.edge_dict().values():
@@ -26,39 +27,41 @@ def sortValues():
     costSorted.sort()
     return costSorted
   
-
-def minEdge():
-    mini = 10000000000000
-    for i in wg.edge_dict():
-        if(wg.edge_dict()[i] < mini):
-            print(wg.edge_dict()[i], mini)
-            mini = wg.edge_dict()[i]  
-            
-    
-    return i
-
-
+#returns number of verticies
+def numberOfVerts():
+    total = 0
+    for i in wg.vertex_set():
+        total += 1
+    return total-1
         
-print(minEdge())
-"""costs =[]
-vert = []
-costs = sortValues()
+#Finds minimum edge, adds it to graph, deletes from array
+def minEdge(edges):
+    mini = wg.edge_dict()[edges[0]]
+    for edge in edges:
+        cost = wg.edge_dict()[edge]
+        if cost <= mini:
+            mini = cost
+            ed = edge 
+    T[1].append(ed)
+    edges.remove(ed)
+    return edges
 
-wg.draw_graph()
+#Puts all edges of graph into an array to manipulate
+def storeEdges():
+    for edge in wg.edge_dict():
+        edges.append(edge)
+
+def main():
+    storeEdges()
+    numberOfVerts()
+    wg.draw_graph()
+    for i in range(numberOfVerts()):
+        minEdge(edges)
+        wg.draw_subgraph(T)
+    
 
 
-for i in range (len(costs)-1):
-    #print(costs[i])
-    edge = findEdge(costs[i])
-    print(edge)
-    if ( edge[0] or edge[1] not in vert):
-        T[1].append(findEdge(costs[i]))
-        vert.append(edge[1])
-   
+main()
 
-    #T[1].append(findEdge(i))
-wg.draw_subgraph(T)
-
-"""
 
 
