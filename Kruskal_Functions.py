@@ -9,30 +9,56 @@ Created on Mon Apr 23 14:33:58 2018
 from Weighted_Graph import *
 
 wg = Weighted_Graph('graph.txt')
+T = ({},[])    
+edges = []    
 
-def updateInfo():
-    #Prints Edges and costs
-    print("\nEdges and costs", wg.edge_dict())
-
-    #Prints Edges
-    print("\nEdges", wg.edge_set())
-
-    #Prints Vertexes
-    print("\nVertexes", wg.vertex_set())    
-
-def minEdge():
-    minValue = min(wg.edge_dict().values())
+def findEdge(cost):
     for i in wg.edge_dict():
-        if (minValue == wg.edge_dict()[i]):
-            del wg.edge_dict()[i]
+        if (cost == wg.edge_dict()[i]):
+            #edges.append(i)
+            #if edge is in 
             return i
 
-mins = minEdge()
-print(mins)
+def sortValues():
+    costSorted = []
+    for i in wg.edge_dict().values():
+        costSorted.append(i)
+    costSorted.sort()
+    return costSorted
+  
 
-#del[ wg.edge_dict()[3,2] ]
-print(wg.edge_dict())
-#T = ({}, []) #initial, verticies connected
+def minEdge():
+    mini = 10000000000000
+    for i in wg.edge_dict():
+        if(wg.edge_dict()[i] < mini):
+            print(wg.edge_dict()[i], mini)
+            mini = wg.edge_dict()[i]  
+            
+    
+    return i
 
+
+        
+print(minEdge())
+"""costs =[]
+vert = []
+costs = sortValues()
+
+wg.draw_graph()
+
+
+for i in range (len(costs)-1):
+    #print(costs[i])
+    edge = findEdge(costs[i])
+    print(edge)
+    if ( edge[0] or edge[1] not in vert):
+        T[1].append(findEdge(costs[i]))
+        vert.append(edge[1])
+   
+
+    #T[1].append(findEdge(i))
+wg.draw_subgraph(T)
+
+"""
 
 
