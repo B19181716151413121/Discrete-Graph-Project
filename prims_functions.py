@@ -49,4 +49,17 @@ def update_tree(G, T):
     T[1].append(e)
     T[0].add(e[0])
     T[0].add(e[1])
+
+    path(e[0], e, e[1])
+
+paths = []
+def path(v1, e, v2):
+    paths.append(v1)
+    paths.append(e)
+    paths.append(v2)
     
+def printPath():
+    print('Path', paths)
+ 
+    
+
